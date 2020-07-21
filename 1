@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- META -->
+<meta charset="utf-8">
+<meta name="Generator" content="XpressEngine">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- TITLE -->
+<title>UND계좌조회</title>
+<!-- CSS -->
+<link rel="stylesheet" href="/common/css/xe.min.css?20200109143416" />
+<link rel="stylesheet" href="/addons/oembed/jquery.oembed.min.css?20200109143416" />
+<link rel="stylesheet" href="/common/js/plugins/ui/jquery-ui.min.css?20200109143416" />
+<link rel="stylesheet" href="/layouts/material_xe/css/bootstrap.css?20200109142952" />
+<link rel="stylesheet" href="/layouts/material_xe/css/ripples.min.css?20200109142952" />
+<link rel="stylesheet" href="/layouts/material_xe/css/material-wfont.min.css?20200109142952" />
+<link rel="stylesheet" href="/layouts/material_xe/css/material.css?20200109142952" />
+<link rel="stylesheet" href="/layouts/material_xe/css/layout.css?20200109142952" />
+<link rel="stylesheet" href="/modules/editor/styles/ckeditor_light/style.css?20200109143416" />
+<link rel="stylesheet" href="/widgets/ding_member_ranking/skins/Ranking_Style2/css/Ding_Member2.css?20200109144845" />
+<!-- JS -->
+<script>
+var current_url = "http://hwansys.org/";
+var request_uri = "http://hwansys.org/";
+var current_mid = "main";
+var waiting_message = "서버에 요청 중입니다. 잠시만 기다려주세요.";
+var ssl_actions = new Array();
+var default_url = "http://hwansys.org/";
+</script>
+<!--[if lt IE 9]><script src="/common/js/jquery-1.x.min.js?20200109143416"></script>
+<![endif]--><!--[if gte IE 9]><!--><script src="/common/js/jquery.min.js?20200109143416"></script>
+<!--<![endif]--><script src="/common/js/x.min.js?20200109143416"></script>
+<script src="/common/js/xe.min.js?20200109143416"></script>
+<script src="/layouts/material_xe/js/classie.js?20200109142952"></script>
+<script src="/layouts/material_xe/js/uisearch.js?20200109142952"></script>
+<script src="/layouts/material_xe/js/bootstrap.min.js?20200109142952"></script>
+<script src="/layouts/material_xe/js/ripples.min.js?20200109142952"></script>
+<script src="/layouts/material_xe/js/material.min.js?20200109142952"></script>
+<!-- RSS -->
+<link rel="alternate" type="application/rss+xml" title="Site RSS" href="http://hwansys.org/rss" /><link rel="alternate" type="application/atom+xml" title="Site Atom" href="http://hwansys.org/atom" /><!-- ICON -->
+<link rel="shortcut icon" href="/files/attach/xeicon/favicon.ico" /><link rel="apple-touch-icon" href="/files/attach/xeicon/mobicon.png" />
+
+<link rel="canonical" href="http://hwansys.org/" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://hwansys.org/" />
+<meta property="og:title" content="UND계좌조회" />
+<style type="text/css">
+    .kakaome-header, .kakaome-header .container {background: #4CAF50;}
+    .sb-search-input {background: #388E3C;color: #fff;}
+    .sb-icon-search {background: #4CAF50;}
+    .sb-icon-search:hover {background: #4CAF50;}
+    .sb-search.sb-search-open .sb-icon-search, .no-js .sb-search .sb-icon-search {background: #388E3C;}
+    .fab .btn:not(.btn-link):not(.btn-flat), .fab .btn-default:not(.btn-link):not(.btn-flat) {background: #FFFF00;color: #717A1F;}
+    .slide-menu a {border-bottom: #388E3C 1px solid;}
+    .slide-menu a:hover, .slider-menu a:focus {text-decoration: none;background: #388E3C;color: #fff;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><script>
+//<![CDATA[
+xe.current_lang = "ko";
+xe.cmd_find = "찾기";
+xe.cmd_cancel = "취소";
+xe.cmd_confirm = "확인";
+xe.msg_no_root = "루트는 선택 할 수 없습니다.";
+xe.msg_no_shortcut = "바로가기는 선택 할 수 없습니다.";
+xe.msg_select_menu = "대상 메뉴 선택";
+//]]>
+</script>
+</head>
+<body>
+
+
+<header class="kakaome-header">
+    <div class="container">
+        <div class="app-bar">
+            <a id="menu-icon" class="nav-toggler toggle-slide-left"><i class="mdi-navigation-menu"></i></a>
+            <a id="logo" href="http://hwansys.org">
+                                UND            </a>
+            <div class="app-action">
+                <a id="account" href="#" data-toggle="modal" data-target="#kakaome-login"><i class="mdi-action-lock outline"></i></a>
+                                <a id="kakaome-search">
+                    <div id="sb-search" class="sb-search">
+                        <form action="http://hwansys.org/" method="get" >
+                            <input type="hidden" name="vid" value="" />
+                            <input type="hidden" name="mid" value="main" />
+                            <input type="hidden" name="act" value="IS" />
+                            <input class="sb-search-input" placeholder="Enter 키를 누르면 검색합니다." type="text" value="" name="is_keyword" id="search">
+                            <input class="sb-search-submit" type="submit">
+                            <span class="sb-icon-search"><i class="mdi-action-search"></i></span>
+                        </form>
+                    </div>
+                    <script>
+                        new UISearch(document.getElementById('sb-search'));
+                    </script>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+    function init() {
+        window.addEventListener('scroll', function (e) {
+            var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+                shrinkOn = 30,
+                header = document.querySelector("header");
+            if (distanceY > shrinkOn) {
+                classie.add(header, "scroll");
+            } else {
+                if (classie.has(header, "scroll")) {
+                    classie.remove(header, "scroll");
+                }
+            }
+        });
+    }
+    window.onload = init();
+</script>
+<div class="kakaome-contents">
+    <div class="b-container">
+        <div class="contents-box">
+            <section class="box-header">
+                <p>UND계좌조회</p>
+            </section>
+            <section id="sub-menu">
+                            </section>
+            <div class="container"><div class="xe-widget-wrapper " style="float:left;width:100%;margin:none;padding:none;"><div style="*zoom:1;padding:0px 0px 0px 0px !important;"><div style="width:100%;height:300px;overflow:hidden;">
+	<script async src="//client.uchat.io/uchat.js" charset="utf-8"></script>
+	<u-chat room='pagt' user_data='room pagt|time 1595322298|hash d6b2cd121eb6426fb84b6f93096a49b1' style="display:inline-block; width:100%; height:100%;"></u-chat>
+</div></div></div><div class="xe-widget-wrapper " style="float:left;width:100%;margin:none;padding:none;"><div style="*zoom:1;padding:0px 0px 0px 0px !important;"><div class="Ding_Member_CrownRanking2">
+        <div class="rank-title-view" style="border-bottom :2px solid #000000; text-align : left; padding : 8px 8px; ">
+        <div class="rank-title" style="font-size : 14px; ">
+            UND 보유 순위        </div>
+    </div>
+        <ul class="rank-list-view">
+                        <li class="rank-crown-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-image ding-image-rank1"></div>
+                            </div>
+                        <div class="list-content">
+                                    <div class="list-title">
+                        <a class="aTag-none member_4941" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/50.gif" alt="[레벨:50]" title="포인트:984770000004UND, 레벨:50/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            ■연합중앙은행                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        984770000004                    </div>
+                </div>
+        </li>
+                        <li class="rank-crown-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-image ding-image-rank2"></div>
+                            </div>
+                        <div class="list-content">
+                                    <div class="list-title">
+                        <a class="aTag-none member_226" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/50.gif" alt="[레벨:50]" title="포인트:17596287804UND, 레벨:50/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            아랍어                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        17596287804                    </div>
+                </div>
+        </li>
+                        <li class="rank-crown-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-image ding-image-rank3"></div>
+                            </div>
+                        <div class="list-content">
+                                    <div class="list-title">
+                        <a class="aTag-none member_5092" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/45.gif" alt="[레벨:45]" title="포인트:9596496030UND (9%), 레벨:45/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            □일본국                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        9596496030                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">4</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_5049" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/40.gif" alt="[레벨:40]" title="포인트:5180000037UND (58%), 레벨:40/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            □러시아제국                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        5180000037                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">5</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_5082" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/23.gif" alt="[레벨:23]" title="포인트:240000036UND (92%), 레벨:23/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            ●karahe                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        240000036                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">6</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_5059" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/23.gif" alt="[레벨:23]" title="포인트:200000026UND (16%), 레벨:23/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            ●신진유한회사                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        200000026                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">7</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_5161" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/12.gif" alt="[레벨:12]" title="포인트:5000026UND (6%), 레벨:12/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            karas                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        5000026                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">8</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_4930" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/12.gif" alt="[레벨:12]" title="포인트:5000017UND (6%), 레벨:12/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            까마귀                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        5000017                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">9</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_5093" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/11.gif" alt="[레벨:11]" title="포인트:3504026UND (28%), 레벨:11/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            NHK                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        3504026                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">10</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_4907" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/1.gif" alt="[레벨:1]" title="포인트:107UND (6%), 레벨:1/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            스기야마                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        107                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">11</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_4897" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/0.gif" alt="[레벨:0]" title="포인트:28UND (43%), 레벨:0/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            타락여우                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        28                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">12</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_4917" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/0.gif" alt="[레벨:0]" title="포인트:28UND (43%), 레벨:0/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            마에다켄지                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        28                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">13</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_4937" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/0.gif" alt="[레벨:0]" title="포인트:27UND (42%), 레벨:0/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            ★연합중앙은행장                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        27                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">14</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_4965" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/0.gif" alt="[레벨:0]" title="포인트:27UND (42%), 레벨:0/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            milo                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        27                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">15</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_5167" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/0.gif" alt="[레벨:0]" title="포인트:26UND (40%), 레벨:0/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            카라스                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        26                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">16</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_4891" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/0.gif" alt="[레벨:0]" title="포인트:26UND (40%), 레벨:0/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            마르코                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        26                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">17</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_5246" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/0.gif" alt="[레벨:0]" title="포인트:25UND (39%), 레벨:0/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            니런                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        25                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">18</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_5221" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/0.gif" alt="[레벨:0]" title="포인트:25UND (39%), 레벨:0/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            노로                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        25                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">19</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_5217" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/0.gif" alt="[레벨:0]" title="포인트:25UND (39%), 레벨:0/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            나르                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        25                    </div>
+                </div>
+        </li>
+                        <li class="rank-list">
+                        <div class="rank-order" style="width : 40px;">
+                                <div class="ding-rank-number">20</div>
+                            </div>
+                            <div>
+                                        <div class="list-title">
+                        <a class="aTag-none member_4928" href="#" onclick="return false"><img src="http://hwansys.org/modules/point/icons/new/0.gif" alt="[레벨:0]" title="포인트:18UND (28%), 레벨:0/50" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;" />
+                            한유                        </a>
+                                            </div>
+                    <div class="list-nickname" style="width : 30px;">
+                        UND                    </div>
+                    <div class="list-nickname" style="width : 100px;">
+                        18                    </div>
+                </div>
+        </li>
+            </ul>
+</div></div></div></div>
+        </div>
+    </div>
+</div>
+<footer class="kakaome-footer">
+    <div class="b-container">
+        <section id="copyright"></section>
+        <ul id="footer-menu">
+                    </ul>
+    </div>
+</footer>
+<div id="nav-back" class="nav-back"></div>
+<ul class="slide-menu" id="kakaome-nav">
+    <li>
+        <a href="/main" class="active">메인</a>
+    </li><li>
+        <a href="https://open.kakao.com/me/arabicmoohyun">운영지원</a>
+    </li><li>
+        <a href="https://open.kakao.com/me/neounited">기술지원</a>
+    </li><li>
+        <a href="/bank_board">연합중앙은행</a>
+    </li><li>
+        <a href="/committee_1">양자역학위원회</a>
+    </li></ul>
+<script>
+    var kkmnav = document.getElementById('kakaome-nav'),
+        navback = document.getElementById('nav-back'),
+        menuicon = document.getElementById('menu-icon'),
+        body = document.body;
+    menuicon.onclick = function () {
+        classie.toggle(this, 'active');
+        classie.toggle(kkmnav, 'open');
+        classie.toggle(navback, 'act');
+        disableOther('menu-icon');
+    };
+    function disableOther(button) {
+        if (button !== 'bmenu-icon') {
+            classie.toggle(menuicon, 'disabled');
+        }
+    }
+</script>
+<div id="kakaome-login" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">로그인</h4>
+            </div>
+            <form action="./" method="post" ><input type="hidden" name="error_return_url" value="/" /><input type="hidden" name="mid" value="main" /><input type="hidden" name="vid" value="" /><input type="hidden" name="ruleset" value="@login" />
+                <div class="modal-body">
+                                        <input type="hidden" name="success_return_url" value="/" />
+                    <input type="hidden" name="act" value="procMemberLogin" />
+                    <div class="form-control-wrapper" style="margin:25px 0 30px 0">
+                        <input type="text" class="form-control empty" name="user_id" id="uid" value="" placeholder="아이디"><span class="material-input"></span>
+                    </div>
+                    <div class="form-control-wrapper" style="margin:30px 0">
+                        <input type="password" name="password" id="upw" value="" placeholder="비밀번호" class="form-control empty" required /><span class="material-input"></span>
+                    </div>
+                    <div class="login-more">
+                        <div class="togglebutton">
+                            <label>
+                                로그인 유지                                <input type="checkbox" name="keep_signed" value="Y" onclick="if(this.checked) return confirm('브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.\n\n로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.');" />
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+                        <a href="/index.php?mid=main&amp;act=dispMemberSignUpForm" id="kakaome-login">회원가입<div class="ripple-wrapper"></div></a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="/index.php?mid=main&amp;act=dispMemberFindAccount" class="btn btn-primary btn-flat">ID/PW 찾기<div class="ripple-wrapper"></div></a>
+                    <button type="submit" class="btn btn-primary btn-flat">로그인</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><script type="text/javascript">
+    jQuery("link[rel=stylesheet][href*='common/css/xe.min.css']").remove();
+</script>
+<!-- ETC -->
+<div class="wfsr"></div>
+<script src="/addons/autolink/autolink.js?20200109143416"></script><script src="/addons/oembed/jquery.oembed.min.js?20200109143416"></script><script src="/addons/oembed/oembed.min.js?20200109143416"></script><script src="/common/js/plugins/ui/jquery-ui.min.js?20200109143416"></script><script src="/common/js/plugins/ui/jquery.ui.datepicker-ko.js?20200109143416"></script><script src="/addons/resize_image/js/resize_image.min.js?20200109143416"></script><script src="/files/cache/ruleset/673270b15a6cff050bd613c9b3ef2bd2.ko.js?20200715193229"></script></body>
+</html>
